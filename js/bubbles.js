@@ -4,34 +4,47 @@ const resetBtn = document.getElementById('resetBubbles');
 let popCount = 0;
 const colors = ['#FF6B6B', '#FF8E72', '#F9CA24', '#E84393', '#FD79A8', '#6C5CE7', '#00CEC9'];
 
-// Pop sound using Web Audio API (no external files)
+// Bubble-wrap style pop sound (Web Audio API)
 let audioCtx = null;
 function playPopSound() {
     try {
         if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        const noise = audioCtx.createBufferSource();
-        const noiseBuffer = audioCtx.createBuffer(1, audioCtx.sampleRate * 0.05, audioCtx.sampleRate);
+        const t0 = audioCtx.currentTime;
+        const duration = 0.035;
+
+        // Short noise burst (air release / crack)
+        const noiseBuffer = audioCtx.createBuffer(1, Math.ceil(audioCtx.sampleRate * duration), audioCtx.sampleRate);
         const data = noiseBuffer.getChannelData(0);
-        for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * 0.3;
+        for (let i = 0; i < data.length; i++) {
+            const fade = 1 - (i / data.length) * (i / data.length);
+            data[i] = (Math.random() * 2 - 1) * 0.45 * fade;
+        }
+        const noise = audioCtx.createBufferSource();
         noise.buffer = noiseBuffer;
         const noiseGain = audioCtx.createGain();
-        noiseGain.gain.setValueAtTime(0.15, audioCtx.currentTime);
-        noiseGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.05);
-        noise.connect(noiseGain);
+        noiseGain.gain.setValueAtTime(0.5, t0);
+        noiseGain.gain.exponentialRampToValueAtTime(0.001, t0 + duration);
+        const bandpass = audioCtx.createBiquadFilter();
+        bandpass.type = 'bandpass';
+        bandpass.frequency.value = 400 + Math.random() * 400;
+        bandpass.Q.value = 1.2;
+        noise.connect(bandpass);
+        bandpass.connect(noiseGain);
         noiseGain.connect(audioCtx.destination);
-        noise.start(audioCtx.currentTime);
-        noise.stop(audioCtx.currentTime + 0.05);
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(180 + Math.random() * 120, audioCtx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.08);
-        gain.gain.setValueAtTime(0.25, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.08);
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        osc.start(audioCtx.currentTime);
-        osc.stop(audioCtx.currentTime + 0.08);
+        noise.start(t0);
+        noise.stop(t0 + duration);
+
+        // Quick low "thump" (plastic cavity)
+        const thump = audioCtx.createOscillator();
+        const thumpGain = audioCtx.createGain();
+        thump.type = 'sine';
+        thump.frequency.setValueAtTime(90 + Math.random() * 60, t0);
+        thumpGain.gain.setValueAtTime(0.2, t0);
+        thumpGain.gain.exponentialRampToValueAtTime(0.001, t0 + 0.02);
+        thump.connect(thumpGain);
+        thumpGain.connect(audioCtx.destination);
+        thump.start(t0);
+        thump.stop(t0 + 0.02);
     } catch (_) {}
 }
 
