@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Music - Thỏ Đào ✨</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/pages.css">
+</head>
+<body>
+    <nav class="main-nav">
+        <a href="../index.html" class="nav-logo">Thỏ Đào ✨</a>
+        <div class="nav-links">
+            <a href="compliments.html">Compliments</a>
+            <a href="bubbles.html">Pop Bubbles</a>
+            <a href="music.html">Music</a>
+            <a href="roasts.html">Roasts</a>
+            <a href="chaos.html">Chaos</a>
+            <a href="ducks.html">Ducks</a>
+            <a href="jokes.html">Jokes</a>
+            <a href="revenge.html">Revenge</a>
+            <a href="fireworks.html">Fireworks</a>
+            <a href="breathe.html">Breathe</a>
+            <a href="fortune.html">Fortune</a>
+            <a href="catch.html">Catch Hearts</a>
+        </div>
+    </nav>
+
+    <main class="page-main music-page">
+        <section class="music-header">
+            <h1>Chill vibes only</h1>
+            <p>Put on something nice and relax. 🎵</p>
+        </section>
+
+        <div class="music-player-card">
+            <div class="now-playing">
+                <span class="now-playing-label">Now playing</span>
+                <p class="track-title" id="trackTitle">—</p>
+                <p class="track-mood" id="trackMood">—</p>
+            </div>
+            <div class="player-controls">
+                <button class="player-btn" id="prevBtn" title="Previous">⏮</button>
+                <button class="player-btn player-btn-main" id="playPauseBtn" title="Play / Pause">▶</button>
+                <button class="player-btn" id="nextBtn" title="Next">⏭</button>
+            </div>
+            <div class="progress-wrap">
+                <span class="time-current" id="timeCurrent">0:00</span>
+                <input type="range" class="progress-bar" id="progressBar" min="0" max="100" value="0">
+                <span class="time-total" id="timeTotal">0:00</span>
+            </div>
+            <div class="volume-wrap">
+                <span class="volume-icon">🔊</span>
+                <input type="range" class="volume-bar" id="volumeBar" min="0" max="100" value="80">
+            </div>
+        </div>
+
+        <ul class="track-list" id="trackList">
+            <li class="track-item" data-index="0">
+                <span class="track-num">1</span>
+                <span class="track-name">Soft piano</span>
+                <span class="track-desc">Calm & cozy</span>
+            </li>
+            <li class="track-item" data-index="1">
+                <span class="track-num">2</span>
+                <span class="track-name">Acoustic breeze</span>
+                <span class="track-desc">Light & easy</span>
+            </li>
+            <li class="track-item" data-index="2">
+                <span class="track-num">3</span>
+                <span class="track-name">Evening chill</span>
+                <span class="track-desc">Wind-down vibes</span>
+            </li>
+            <li class="track-item" data-index="3">
+                <span class="track-num">4</span>
+                <span class="track-name">Dreamy strings</span>
+                <span class="track-desc">Peaceful</span>
+            </li>
+        </ul>
+
+        <p class="music-credit">Music: royalty-free tracks for personal use ✨</p>
+    </main>
+
+    <audio id="audio" preload="metadata"></audio>
+    <script src="../js/music.js"></script>
+</body>
+</html>

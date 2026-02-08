@@ -1,3 +1,28 @@
+// Peaceful background music (random one on load)
+const bgMusicTracks = [
+    'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+    'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
+    'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3'
+];
+const bgAudio = document.getElementById('bgMusic');
+const bgMusicToggle = document.getElementById('bgMusicToggle');
+if (bgAudio && bgMusicToggle) {
+    bgAudio.volume = 0.25;
+    bgAudio.src = bgMusicTracks[Math.floor(Math.random() * bgMusicTracks.length)];
+    bgMusicToggle.addEventListener('click', () => {
+        if (bgAudio.paused) {
+            bgAudio.play().catch(() => {});
+            bgMusicToggle.textContent = '🔊';
+            bgMusicToggle.classList.add('playing');
+        } else {
+            bgAudio.pause();
+            bgMusicToggle.textContent = '🎵';
+            bgMusicToggle.classList.remove('playing');
+        }
+    });
+    bgAudio.addEventListener('ended', () => bgAudio.play());
+}
+
 // Confetti colors matching the site palette
 const confettiColors = ['#FF6B6B', '#FF8E72', '#F9CA24', '#E84393', '#FD79A8', '#6C5CE7', '#00CEC9', '#FFF5F0'];
 

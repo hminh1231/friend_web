@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Thỏ Đào ✨ You're a Star</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,6 +15,7 @@
         <div class="nav-links">
             <a href="pages/compliments.html">Compliments</a>
             <a href="pages/bubbles.html">Pop Bubbles</a>
+            <a href="pages/music.html">Music</a>
             <a href="pages/roasts.html">Roasts</a>
             <a href="pages/chaos.html">Chaos</a>
             <a href="pages/ducks.html">Ducks</a>
@@ -27,6 +28,8 @@
         </div>
     </nav>
     <div class="confetti-container" id="confetti"></div>
+    <button class="bg-music-toggle" id="bgMusicToggle" title="Toggle background music" aria-label="Toggle background music">🎵</button>
+    <audio id="bgMusic" loop></audio>
     
     <main>
         <section class="hero">
@@ -81,24 +84,61 @@
             </ul>
         </section>
 
-        <section class="explore-section">
-            <h2>Make you laugh 😂</h2>
+        <section class="explore-section explore-category">
+            <h2 class="category-title"><span class="category-icon">🎮</span> Games</h2>
+            <p class="category-desc">Play something fun</p>
+            <div class="explore-grid">
+                <a href="pages/bubbles.html" class="explore-card explore-games">
+                    <span class="explore-emoji">🫧</span>
+                    <span>Pop Bubbles</span>
+                </a>
+                <a href="pages/catch.html" class="explore-card explore-games">
+                    <span class="explore-emoji">💖</span>
+                    <span>Catch Hearts</span>
+                </a>
+                <a href="pages/ducks.html" class="explore-card explore-games">
+                    <span class="explore-emoji">🦆</span>
+                    <span>Ducks</span>
+                </a>
+                <a href="pages/chaos.html" class="explore-card explore-games">
+                    <span class="explore-emoji">😈</span>
+                    <span>Chaos Button</span>
+                </a>
+                <a href="pages/fireworks.html" class="explore-card explore-games">
+                    <span class="explore-emoji">🎆</span>
+                    <span>Fireworks</span>
+                </a>
+            </div>
+        </section>
+        <section class="explore-section explore-category">
+            <h2 class="category-title"><span class="category-icon">😌</span> Chill & relax</h2>
+            <p class="category-desc">Calm vibes only</p>
+            <div class="explore-grid">
+                <a href="pages/music.html" class="explore-card explore-chill">
+                    <span class="explore-emoji">🎵</span>
+                    <span>Music</span>
+                </a>
+                <a href="pages/breathe.html" class="explore-card explore-chill">
+                    <span class="explore-emoji">🌬️</span>
+                    <span>Breathe</span>
+                </a>
+                <a href="pages/fortune.html" class="explore-card explore-chill">
+                    <span class="explore-emoji">🥠</span>
+                    <span>Fortune</span>
+                </a>
+                <a href="pages/compliments.html" class="explore-card explore-chill">
+                    <span class="explore-emoji">💕</span>
+                    <span>Compliments</span>
+                </a>
+            </div>
+        </section>
+        <section class="explore-section explore-category">
+            <h2 class="category-title"><span class="category-icon">😂</span> Make you laugh</h2>
+            <p class="category-desc">Silly roasts, jokes & more</p>
             <div class="explore-grid">
                 <a href="pages/roasts.html" class="explore-card explore-funny">
                     <span class="explore-emoji">🍑</span>
                     <span>Silly Roasts</span>
-                </a>
-                <a href="pages/chaos.html" class="explore-card explore-funny">
-                    <span class="explore-emoji">😈</span>
-                    <span>Chaos Button</span>
-                </a>
-                <a href="pages/ducks.html" class="explore-card explore-funny">
-                    <span class="explore-emoji">🦆</span>
-                    <span>Ducks</span>
-                </a>
-                <a href="pages/thoughts.html" class="explore-card explore-funny">
-                    <span class="explore-emoji">🧠</span>
-                    <span>Brain Dump</span>
                 </a>
                 <a href="pages/jokes.html" class="explore-card explore-funny">
                     <span class="explore-emoji">🧀</span>
@@ -108,34 +148,9 @@
                     <span class="explore-emoji">💅</span>
                     <span>Revenge Ideas</span>
                 </a>
-            </div>
-        </section>
-        <section class="explore-section">
-            <h2>Chill & play</h2>
-            <div class="explore-grid">
-                <a href="pages/compliments.html" class="explore-card">
-                    <span class="explore-emoji">💕</span>
-                    <span>Compliments</span>
-                </a>
-                <a href="pages/bubbles.html" class="explore-card">
-                    <span class="explore-emoji">🫧</span>
-                    <span>Pop Bubbles</span>
-                </a>
-                <a href="pages/fireworks.html" class="explore-card">
-                    <span class="explore-emoji">🎆</span>
-                    <span>Fireworks</span>
-                </a>
-                <a href="pages/breathe.html" class="explore-card">
-                    <span class="explore-emoji">🌬️</span>
-                    <span>Breathe</span>
-                </a>
-                <a href="pages/fortune.html" class="explore-card">
-                    <span class="explore-emoji">🥠</span>
-                    <span>Fortune</span>
-                </a>
-                <a href="pages/catch.html" class="explore-card">
-                    <span class="explore-emoji">💖</span>
-                    <span>Catch Hearts</span>
+                <a href="pages/thoughts.html" class="explore-card explore-funny">
+                    <span class="explore-emoji">🧠</span>
+                    <span>Brain Dump</span>
                 </a>
             </div>
         </section>
